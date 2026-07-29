@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Mežaparks Great Bandstand",
+    "lat": 57.01483832149056,
+    "lon": 24.15219830848193,
+    "description": "<div><b>The Mežaparks Grand Bandstand</b> is where Latvia sings at full volume. Since 1955, it has been the home of the Latvian Song Celebration – every five years, choirs, dancers and audiences gather here, turning Mežaparks into one huge shared moment.</div>"
+  },
+  {
+    "name": "Freedom Monument",
+    "lat": 56.95153742823825,
+    "lon": 24.11332557419026,
+    "description": "<div><b>The Freedom Monument</b> is one of Latvia’s strongest symbols of independence – a place where Riga’s heart beats especially loud.</div><div>In 2023, two world records were set at the foot of the monument during the World Athletics Road Running Championships Riga23. <b>The women’s road mile world record, 4:20.98, still stands today.</b></div>"
+  },
+  {
+    "name": "Latvian National Museum of Art",
+    "lat": 56.95572199975129,
+    "lon": 24.11347522269941,
+    "description": "<div><b>The Latvian National Museum of Art</b> is one of Riga’s key cultural stops. Its main building, opened in 1905, was the first purpose-built art museum building in the Baltics.</div>"
+  },
+  {
+    "name": "Riga Castle",
+    "lat": 56.95116924015894,
+    "lon": 24.10046691936089,
+    "description": "<div><b>Riga Castle,</b> on the bank of the Daugava, is the official residence of the President of Latvia and one of Riga’s oldest landmarks.</div><div>Look up at the tower — if the white President’s flag is flying, the President is working in the Castle. Spot it on race day as you head down the finish straight!</div>"
+  },
+  {
+    "name": "Vanšu Bridge",
+    "lat": 56.95075260250155,
+    "lon": 24.09353585916876,
+    "description": "<div><b>Vanšu Bridge</b> is one of Riga’s most recognisable lines across the Daugava – with its tall pylon, cables and wide views towards Ķīpsala.</div><div>It connects the city centre with Pārdaugava and is one of those spots where Riga looks especially photogenic on marathon day.</div>"
+  },
+  {
+    "name": "Stone Bridge",
+    "lat": 56.94439005672244,
+    "lon": 24.10091593067216,
+    "description": "<div><b>The Stone Bridge</b> is one of Riga’s classic views — across the Daugava towards Old Riga and its skyline of church towers. </div><div>Long before today’s bridge, this crossing was home to earlier raft and pontoon bridges. The current bridge opened in 1957.</div>"
+  },
+  {
+    "name": "National Library of Latvia",
+    "lat": 56.94115878825039,
+    "lon": 24.09671242739386,
+    "description": "<div>The National Library of Latvia, also known as the Castle of Light, resembles a \"glass mountain\" from Latvian folklore.</div><div>The building holds Latvia’s stories, books and knowledge – and offers a great view back towards Riga.</div>"
+  }
+]

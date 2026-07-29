@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+  <title id="title">European Marathon Classics rings</title>
+  <g fill="none" stroke-width="2.2">
+    <circle cx="50" cy="50" r="46" stroke="#E2181A"/>
+    <circle cx="50" cy="50" r="42" stroke="#3F4997"/>
+    <circle cx="50" cy="50" r="38" stroke="#3DADE3"/>
+    <circle cx="50" cy="50" r="34" stroke="#C14692"/>
+    <circle cx="50" cy="50" r="30" stroke="#40B07A"/>
+    <circle cx="50" cy="50" r="26" stroke="#F7B601"/>
+    <circle cx="50" cy="50" r="22" stroke="#9F5198"/>
+    <circle cx="50" cy="50" r="18" stroke="#ED752D"/>
+    <circle cx="50" cy="50" r="14" stroke="#D0CFD0"/>
+    <circle cx="50" cy="50" r="10" stroke="#00609C"/>
+  </g>
+</svg>

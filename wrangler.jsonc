@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "emc-riga-proposal",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-07-29",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "routes": [
+    {
+      "pattern": "emc.rimirigamarathon.com",
+      "custom_domain": true
+    }
+  ]
+}

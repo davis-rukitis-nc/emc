@@ -1,0 +1,26 @@
+{
+  "footprintKg": 342354.1,
+  "footprintTonnesRounded": 342,
+  "scopes": [
+    {
+      "scope": "Scope 1",
+      "percent": 1
+    },
+    {
+      "scope": "Scope 2",
+      "percent": 1
+    },
+    {
+      "scope": "Scope 3",
+      "percent": 98
+    }
+  ],
+  "pillars": [
+    "Reduction",
+    "Education and involvement",
+    "Compensation"
+  ],
+  "treesPlantedApprox": 8000,
+  "compensationMultiple": 5,
+  "sourceUrl": "https://rimirigamarathon.com/en/sustainability/"
+}

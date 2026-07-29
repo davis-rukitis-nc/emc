@@ -1,0 +1,66 @@
+[
+  {
+    "city": "Rome",
+    "date": "14/03",
+    "colour": "#E2181A",
+    "lat": 41.9028,
+    "lon": 12.4964
+  },
+  {
+    "city": "Vienna",
+    "date": "18/04",
+    "colour": "#3F4997",
+    "lat": 48.2082,
+    "lon": 16.3738
+  },
+  {
+    "city": "London",
+    "date": "24–25/04",
+    "colour": "#FF01C1",
+    "lat": 51.5074,
+    "lon": -0.1278
+  },
+  {
+    "city": "Madrid",
+    "date": "25/04",
+    "colour": "#3DADE3",
+    "lat": 40.4168,
+    "lon": -3.7038
+  },
+  {
+    "city": "Copenhagen",
+    "date": "09/05",
+    "colour": "#D0CFD0",
+    "lat": 55.6761,
+    "lon": 12.5683
+  },
+  {
+    "city": "Riga",
+    "date": "15–16/05",
+    "colour": "#40B07A",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "candidate": true
+  },
+  {
+    "city": "Warsaw",
+    "date": "27/09",
+    "colour": "#F7B601",
+    "lat": 52.2297,
+    "lon": 21.0122
+  },
+  {
+    "city": "Lisbon",
+    "date": "10/10",
+    "colour": "#9F5198",
+    "lat": 38.7223,
+    "lon": -9.1393
+  },
+  {
+    "city": "Frankfurt",
+    "date": "25/10",
+    "colour": "#ED752D",
+    "lat": 50.1109,
+    "lon": 8.6821
+  }
+]

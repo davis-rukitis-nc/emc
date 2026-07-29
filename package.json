@@ -1,0 +1,15 @@
+{
+  "name": "emc-riga-proposal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/dev-server.mjs --dist",
+    "validate": "node scripts/validate.mjs",
+    "cf:dev": "npm run build && npx wrangler@latest dev",
+    "cf:deploy": "npm run build && npx wrangler@latest deploy",
+    "deploy": "npm run build && npx wrangler@latest deploy"
+  }
+}
