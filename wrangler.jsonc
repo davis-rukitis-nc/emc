@@ -3,15 +3,13 @@
   "name": "emc",
   "main": "worker/index.js",
   "compatibility_date": "2026-07-29",
+
+  "workers_dev": true,
+  "preview_urls": true,
+
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
     "run_worker_first": true
-  },
-  "routes": [
-    {
-      "pattern": "emc.rimirigamarathon.com",
-      "custom_domain": true
-    }
-  ]
+  }
 }
