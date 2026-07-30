@@ -683,7 +683,17 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
 .growth-node i{display:block;width:16px;height:16px;border:4px solid #061827;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px var(--green),0 0 18px #40b07a88}
 .growth-node small{position:absolute;top:24px;white-space:nowrap;color:#88a9bd;font-size:10px;letter-spacing:.07em;text-transform:uppercase}
 .growth-node-start{left:4.7%;top:83.5%}
-.growth-node-mid{left:49%;top:55%}
+.growth-node-mid{left:49%;top:55%;z-index:3}
+.growth-node-mid small{
+  top:26px;
+  z-index:4;
+  padding:5px 8px;
+  border:1px solid #28536e;
+  border-radius:999px;
+  background:#061b2b;
+  color:#d8e9f4;
+  box-shadow:0 0 0 5px #061b2b;
+}
 .growth-node-end{left:95.2%;top:15%}
 .growth-node-end i{background:#F7B601;box-shadow:0 0 0 2px #F7B601,0 0 18px #f7b60188}
 .growth-trajectory-values{display:flex;justify-content:space-between;gap:25px;align-items:end;border-top:1px solid #28536e;padding-top:20px}
