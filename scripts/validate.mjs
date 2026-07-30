@@ -28,10 +28,10 @@ for (const marker of ['dark_nolabels','renderClassicsSequence','initMedalTilt','
 
 const styles = await readFile(resolve(root, 'src/styles.css'), 'utf8');
 if (styles.includes('margin-top:-3px')) throw new Error('Negative Classics race-card margin remains.');
-for (const marker of ['.label-physics-copy{','justify-content:flex-end','height:860px']) {
+for (const marker of ['.label-physics-copy{','justify-content:flex-end','height:900px','.growth-trajectory{']) {
   if (!styles.includes(marker)) throw new Error(`Missing final visual-polish marker: ${marker}`);
 }
-if (!html.includes('<strong>≈342 t</strong>')) throw new Error('Sustainability total is not using the approximate value.');
+if (!html.includes('<strong>≈ 342 t</strong>')) throw new Error('Sustainability total is not using the approximate value.');
 
 const files = await readdir(resolve(root, 'src/assets/fonts'));
 if (files.some(file => ['.ttf','.otf','.woff','.woff2'].includes(extname(file).toLowerCase()))) {

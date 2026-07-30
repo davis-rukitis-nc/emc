@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Course point image placeholder</title>
+  <desc id="desc">Dark geometric placeholder using European Marathon Classics ring colours.</desc>
+  <rect width="1200" height="800" fill="#071017"/>
+  <g fill="none" stroke-width="7" opacity=".9">
+    <circle cx="950" cy="400" r="330" stroke="#E2181A"/>
+    <circle cx="950" cy="400" r="292" stroke="#3F4997"/>
+    <circle cx="950" cy="400" r="254" stroke="#3DADE3"/>
+    <circle cx="950" cy="400" r="216" stroke="#C14692"/>
+    <circle cx="950" cy="400" r="178" stroke="#40B07A"/>
+    <circle cx="950" cy="400" r="140" stroke="#F7B601"/>
+    <circle cx="950" cy="400" r="102" stroke="#9F5198"/>
+    <circle cx="950" cy="400" r="64" stroke="#ED752D"/>
+  </g>
+  <path d="M0 620 C260 500 380 720 690 560 S1010 410 1200 500" fill="none" stroke="#40B07A" stroke-width="12" opacity=".55"/>
+</svg>

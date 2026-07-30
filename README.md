@@ -211,3 +211,14 @@ npx wrangler@latest secret put SESSION_SECRET
 ```
 
 Enter `9THCLASSIC` for `SITE_PASSWORD` and a generated random value for `SESSION_SECRET`.
+
+## Version 1.1 UX review update
+
+- Course module rebuilt around an always-visible rotating POI panel and a closer route map.
+- Existing landmark entries now support `image`; three new kilometre points were added: KM 11, KM 18 and KM 35.
+- Replace `/src/assets/images/landmarks/poi-placeholder.svg` or set individual `image` values in `src/assets/data/pois.json` as approved images arrive.
+- Added Rimi Riga Marathon favicon and social-description tags.
+- Physics canvas keeps pointer dragging while allowing wheel/trackpad page scrolling.
+- Added 2020 and 2021 pandemic annotations to the historical participation chart.
+- Updated medal, sustainability, Kids’ Day, operational pillars and marathon-growth visuals.
+- Cloudflare configuration remains on the protected `emc.necom.workers.dev` preview route. Runtime secrets must exist under Worker Settings → Variables and Secrets.

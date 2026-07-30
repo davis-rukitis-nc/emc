@@ -298,6 +298,15 @@ function renderGrowthChart(reach, key = 'registered') {
 
   rows.forEach((row, index) => node.append(svg('circle', { cx: points[index][0], cy: points[index][1], r: 3, class: 'chart-dot', fill: metric.colour, opacity: .65 })));
 
+  [2020, 2021].forEach((pandemicYear, pandemicIndex) => {
+    const rowIndex = rows.findIndex(row => row.year === pandemicYear);
+    if (rowIndex < 0) return;
+    const [px, py] = points[rowIndex];
+    node.append(svg('line', { x1: px, y1: padding.top + 8, x2: px, y2: H - padding.bottom, class: 'chart-event-line' }));
+    node.append(svg('circle', { cx: px, cy: py, r: 6, class: 'chart-event-dot', stroke: metric.colour }));
+    node.append(svg('text', { x: px + (pandemicIndex ? 8 : -8), y: padding.top + 1, 'text-anchor': pandemicIndex ? 'start' : 'end', class: 'chart-event-label' }, `${pandemicYear} · pandemic`));
+  });
+
   const hoverLine = svg('line', { y1: padding.top, y2: H - padding.bottom, class: 'chart-hover-line', opacity: 0 });
   const hoverPoint = svg('circle', { r: 7, fill: '#090909', stroke: metric.colour, 'stroke-width': 3, opacity: 0 });
   node.append(hoverLine, hoverPoint);
@@ -604,6 +613,12 @@ function initLabelPhysics() {
       });
       Composite.add(engine.world, mouseConstraint);
       render.mouse = mouse;
+      // Keep drag interaction, but let trackpads and mouse wheels scroll the page.
+      if (mouse.mousewheel) {
+        render.canvas.removeEventListener('mousewheel', mouse.mousewheel);
+        render.canvas.removeEventListener('DOMMouseScroll', mouse.mousewheel);
+        render.canvas.removeEventListener('wheel', mouse.mousewheel);
+      }
     }
 
     if (!reducedMotion) {
@@ -766,37 +781,43 @@ function createTileMap(container, coords, options = {}) {
 function renderCourse(course, pois) {
   const node = qs('#course-map');
   const detail = qs('#course-poi-detail');
-  if (!node) return;
+  if (!node || !detail || !pois.length) return;
   const coords = course.features[0].geometry.coordinates;
   const clean = html => {
     const temporary = document.createElement('div');
     temporary.innerHTML = html || '';
     return temporary.textContent.replace(/\s+/g, ' ').trim();
   };
-  let landmarkMode = false;
   let selectedIndex = 0;
+  let rotationTimer;
 
   const updateDetail = poi => {
-    if (!detail) return;
     const title = qs('strong', detail);
     const copy = qs('span', detail);
     const media = qs('.course-poi-media', detail);
     const image = qs('img', media);
     title.textContent = poi.name;
-    copy.textContent = clean(poi.description);
-    if (poi.image) {
-      image.src = poi.image;
-      image.alt = poi.name;
-      media.hidden = false;
-    } else {
-      image.removeAttribute('src');
-      media.hidden = true;
-    }
-    detail.hidden = false;
+    const description = clean(poi.description);
+    copy.textContent = description;
+    copy.hidden = !description;
+    image.src = poi.image || '/assets/images/landmarks/poi-placeholder.svg';
+    image.alt = poi.image && !poi.image.includes('placeholder') ? poi.name : '';
+  };
+
+  const selectPoi = (index, restart = true) => {
+    selectedIndex = (index + pois.length) % pois.length;
+    qsa('.poi-marker', node).forEach((marker, markerIndex) => marker.classList.toggle('selected', markerIndex === selectedIndex));
+    updateDetail(pois[selectedIndex]);
+    if (restart) startRotation();
+  };
+
+  const startRotation = () => {
+    clearInterval(rotationTimer);
+    rotationTimer = setInterval(() => selectPoi(selectedIndex + 1, false), 12000);
   };
 
   const draw = () => {
-    const map = createTileMap(node, coords, { padding: 12, visualScale: 1.14, hideAttribution: true });
+    const map = createTileMap(node, coords, { padding: 8, visualScale: 1.34, hideAttribution: true });
     const points = coords.map(map.toLocal);
     const pathData = points.map((point, index) => `${index ? 'L' : 'M'} ${point[0].toFixed(1)} ${point[1].toFixed(1)}`).join(' ');
     map.overlay.append(svg('path', { d: pathData, class: 'route-shadow' }));
@@ -804,46 +825,32 @@ function renderCourse(course, pois) {
 
     const start = points[0];
     const finish = points.at(-1);
-    map.overlay.append(svg('circle', { cx: start[0], cy: start[1], r: 9, fill: '#40B07A', stroke: '#fff', 'stroke-width': 3 }));
-    map.overlay.append(svg('circle', { cx: finish[0], cy: finish[1], r: 5, fill: '#fff', stroke: '#40B07A', 'stroke-width': 3 }));
+    map.overlay.append(svg('circle', { cx: start[0], cy: start[1], r: 7, fill: '#40B07A', stroke: '#fff', 'stroke-width': 2 }));
+    map.overlay.append(svg('circle', { cx: finish[0], cy: finish[1], r: 4, fill: '#fff', stroke: '#40B07A', 'stroke-width': 2 }));
 
     pois.forEach((poi, index) => {
       const [x, y] = map.toLocal([poi.lon, poi.lat]);
       const marker = document.createElement('div');
-      marker.className = `poi-marker${index === selectedIndex && landmarkMode ? ' selected' : ''}`;
+      marker.className = `poi-marker${index === selectedIndex ? ' selected' : ''}`;
       marker.style.left = `${x}px`;
       marker.style.top = `${y}px`;
-      marker.innerHTML = `<button type="button" aria-label="${poi.name}"><span class="poi-dot">${String(index + 1).padStart(2, '0')}</span><span class="poi-label">${poi.name}</span></button>`;
-      qs('button', marker).addEventListener('click', () => {
-        selectedIndex = index;
-        qsa('.poi-marker', node).forEach(item => item.classList.toggle('selected', item === marker));
-        updateDetail(poi);
-      });
+      marker.innerHTML = `<button type="button" aria-label="${poi.name}"><span class="poi-dot"></span><span class="poi-label">${poi.name}</span></button>`;
+      const activate = () => selectPoi(index);
+      qs('button', marker).addEventListener('click', activate);
+      qs('button', marker).addEventListener('focus', () => selectPoi(index, false));
       node.append(marker);
     });
 
-    node.classList.toggle('show-landmarks', landmarkMode);
+    node.classList.add('show-landmarks');
   };
 
-  const setMode = mode => {
-    landmarkMode = mode === 'landmarks';
-    qsa('[data-map-view]').forEach(button => button.classList.toggle('active', button.dataset.mapView === mode));
-    node.classList.toggle('show-landmarks', landmarkMode);
-    if (landmarkMode) {
-      updateDetail(pois[selectedIndex]);
-      qsa('.poi-marker', node).forEach((marker, index) => marker.classList.toggle('selected', index === selectedIndex));
-    } else {
-      if (detail) detail.hidden = true;
-      qsa('.poi-marker', node).forEach(marker => marker.classList.remove('selected'));
-    }
-  };
-
-  qsa('[data-map-view]').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mapView)));
+  updateDetail(pois[selectedIndex]);
   draw();
-  let timer;
+  startRotation();
+  let resizeTimer;
   new ResizeObserver(() => {
-    clearTimeout(timer);
-    timer = setTimeout(draw, 150);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(draw, 150);
   }).observe(node);
 }
 
