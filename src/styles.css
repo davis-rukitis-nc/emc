@@ -735,7 +735,7 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
 
 /* Mobile polish and map/POI navigation pass */
 .tile-map{background:#262626}
-.tile-layer img{filter:grayscale(1) invert(1) brightness(.16) contrast(2)}
+.tile-layer img{filter:grayscale(1) invert(1) brightness(.18) contrast(1.15)}
 .course-poi-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 24px;border-top:1px solid #263b47;background:#070b0e}
 .course-poi-arrow,.course-poi-pages button{display:grid;place-items:center;border:1px solid #3d535e;background:transparent;color:#dce4e7;cursor:pointer;transition:.2s ease}
 .course-poi-arrow{width:42px;height:42px;border-radius:50%;font-size:19px}
