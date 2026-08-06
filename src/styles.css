@@ -888,3 +888,43 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .performance-card{padding:22px}
   .performance-times{gap:12px}
 }
+
+/* Footer and restored dark map */
+.europe-map{background:#090b0c}
+.europe-map .tile-layer img{filter:grayscale(1) brightness(.72) contrast(1.2)}
+.site-footer{position:relative;margin:16px;border:1px solid #202020;border-radius:18px;overflow:hidden;background:#050505}
+.site-footer-inner{padding-block:clamp(64px,8vw,108px) 42px}
+.footer-contact h2{max-width:720px;margin:0;font-family:var(--font-display);font-size:clamp(48px,7vw,94px);font-weight:500;line-height:.92;letter-spacing:-.05em}
+.footer-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:38px}
+.footer-button,.footer-email{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:12px 22px;border-radius:999px;font-size:14px;text-decoration:none;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.footer-button{border:1px solid #ffffff38;color:#fff}
+.footer-button:hover,.footer-button:focus-visible{background:#fff;border-color:#fff;color:#080808}
+.footer-email{background:#ffffff0d;color:#aaa}
+.footer-email:hover,.footer-email:focus-visible{background:#ffffff17;color:#fff}
+.footer-divider{height:1px;margin:clamp(65px,8vw,105px) 0 42px;background:#ffffff18}
+.footer-bottom{display:grid;grid-template-columns:minmax(230px,1.2fr) minmax(240px,1fr) auto;grid-template-areas:"logos details links" "logos copyright copyright";gap:28px 60px;align-items:end}
+.footer-organisations{grid-area:logos;display:flex;flex-wrap:wrap;align-items:center;gap:30px}
+.footer-organisations a{display:flex;align-items:center;min-height:48px}
+.footer-necom img{width:120px;max-height:42px;object-fit:contain;object-position:left center}
+.footer-rrm img{width:145px;max-height:52px;object-fit:contain;object-position:left center}
+.footer-company{grid-area:details;color:#777;font-size:12px;line-height:1.65}
+.footer-company p{margin:0}
+.footer-links{grid-area:links;display:grid;gap:9px;text-align:right}
+.footer-links a{color:#aaa;font-size:13px;text-decoration:none}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff}
+.footer-copyright{grid-area:copyright;justify-self:end;margin:0;color:#575757;font-size:11px}
+@media(max-width:800px){
+  .site-footer{margin:8px;border-radius:14px}
+  .site-footer-inner{padding-inline:24px}
+  .footer-bottom{grid-template-columns:1fr;grid-template-areas:"logos" "details" "links" "copyright";align-items:start}
+  .footer-links{text-align:left}
+  .footer-copyright{justify-self:start;margin-top:16px}
+}
+@media(max-width:520px){
+  .site-footer-inner{padding-inline:20px}
+  .footer-actions{align-items:stretch;flex-direction:column}
+  .footer-button,.footer-email{justify-content:center;width:100%}
+  .footer-organisations{gap:20px}
+  .footer-necom img{width:105px}
+  .footer-rrm img{width:130px}
+}
