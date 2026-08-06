@@ -729,7 +729,16 @@ function createTileMap(container, coords, options = {}) {
   const ys = projected.map(point => point.y);
   const defaultCenter = { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 };
   const center = options.center ? mercator(options.center[1], options.center[0], zoom) : defaultCenter;
-  const visualScale = Number(options.visualScale || 1);
+  let visualScale = Number(options.visualScale || 1);
+  if (options.fitScale) {
+    const contentWidth = Math.max(...xs) - Math.min(...xs) || 1;
+    const contentHeight = Math.max(...ys) - Math.min(...ys) || 1;
+    const padding = Number(options.padding || 70);
+    visualScale = Math.min(
+      (width - padding * 2) / contentWidth,
+      (height - padding * 2) / contentHeight
+    );
+  }
   const origin = { x: center.x - width / (2 * visualScale), y: center.y - height / (2 * visualScale) };
 
   container.innerHTML = '';
@@ -790,6 +799,9 @@ function renderCourse(course, pois) {
   };
   let selectedIndex = 0;
   let rotationTimer;
+  const pages = qs('.course-poi-pages', detail);
+
+  pages.innerHTML = pois.map((poi, index) => `<button type="button" data-poi-index="${index}" aria-label="Show ${poi.name}" aria-pressed="${index === 0}">${index + 1}</button>`).join('');
 
   const updateDetail = poi => {
     const title = qs('strong', detail);
@@ -807,17 +819,30 @@ function renderCourse(course, pois) {
   const selectPoi = (index, restart = true) => {
     selectedIndex = (index + pois.length) % pois.length;
     qsa('.poi-marker', node).forEach((marker, markerIndex) => marker.classList.toggle('selected', markerIndex === selectedIndex));
+    qsa('[data-poi-index]', detail).forEach((button, buttonIndex) => {
+      const active = buttonIndex === selectedIndex;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
     updateDetail(pois[selectedIndex]);
     if (restart) startRotation();
   };
 
+  qs('[data-poi-previous]', detail).addEventListener('click', () => selectPoi(selectedIndex - 1));
+  qs('[data-poi-next]', detail).addEventListener('click', () => selectPoi(selectedIndex + 1));
+  qsa('[data-poi-index]', detail).forEach(button => button.addEventListener('click', () => selectPoi(Number(button.dataset.poiIndex))));
+
   const startRotation = () => {
     clearInterval(rotationTimer);
+    if (matchMedia('(max-width: 800px)').matches) return;
     rotationTimer = setInterval(() => selectPoi(selectedIndex + 1, false), 12000);
   };
 
   const draw = () => {
-    const map = createTileMap(node, coords, { padding: 8, visualScale: 1.34, hideAttribution: true });
+    const compact = matchMedia('(max-width: 800px)').matches;
+    const map = createTileMap(node, coords, compact
+      ? { padding: 28, fitScale: true, hideAttribution: true }
+      : { padding: 8, visualScale: 1.34, hideAttribution: true });
     const points = coords.map(map.toLocal);
     const pathData = points.map((point, index) => `${index ? 'L' : 'M'} ${point[0].toFixed(1)} ${point[1].toFixed(1)}`).join(' ');
     map.overlay.append(svg('path', { d: pathData, class: 'route-shadow' }));
@@ -846,7 +871,7 @@ function renderCourse(course, pois) {
 
   updateDetail(pois[selectedIndex]);
   draw();
-  startRotation();
+  if (!matchMedia('(max-width: 800px)').matches) startRotation();
   let resizeTimer;
   new ResizeObserver(() => {
     clearTimeout(resizeTimer);
@@ -861,7 +886,10 @@ function renderEurope(cities) {
   renderClassicsSequence('#classics-sequence', cities);
 
   const draw = () => {
-    const map = createTileMap(node, coords, { zoom: 4, center: [10.5, 53], hideAttribution: true });
+    const compact = matchMedia('(max-width: 800px)').matches;
+    const map = createTileMap(node, coords, compact
+      ? { padding: 24, fitScale: true, hideAttribution: true }
+      : { zoom: 4, center: [10.5, 53], hideAttribution: true });
     const markerMap = new Map();
 
     cities.forEach(city => {
