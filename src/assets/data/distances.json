@@ -1,8 +1,8 @@
 [
-  { "distance": "Rimi Kids’ Day", "participants": 9433 },
+  { "distance": "Kids’ Day", "participants": 9433 },
   { "distance": "DPD Mile", "participants": 6780 },
   { "distance": "6 km", "participants": 11538 },
   { "distance": "10 km", "participants": 8022 },
-  { "distance": "Half marathon — 21 km", "participants": 7142 },
-  { "distance": "Marathon — 42 km", "participants": 3569 }
+  { "distance": "Half marathon", "participants": 7142 },
+  { "distance": "Marathon", "participants": 3569 }
 ]

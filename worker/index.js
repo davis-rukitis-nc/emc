@@ -68,7 +68,7 @@ export default {
       return new Response(gate(), { status: 401, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
     }
     const assetRequest = url.pathname === '/full' || url.pathname === '/full/'
-      ? new Request(new URL('/full.html', url), request)
+      ? new Request(new URL('/full/index.html', url), request)
       : request;
     const response = await env.ASSETS.fetch(assetRequest);
     const out = new Response(response.body, response);

@@ -1015,7 +1015,7 @@ function initStabilityGallery() {
 async function initData() {
   try {
     const [distances, reach, cities, course, pois, elevation] = await Promise.all([
-      load(location.pathname === '/full' || location.pathname === '/full.html' ? 'distances-archive.json' : 'distances.json'),
+      load(['/full', '/full/', '/full/index.html'].includes(location.pathname) ? 'distances-archive.json' : 'distances.json'),
       load('reach.json'),
       load('cities.json'),
       load('course.geojson'),

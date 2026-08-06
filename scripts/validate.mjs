@@ -15,7 +15,7 @@ const html = await readFile(resolve(root, 'src/index.html'), 'utf8');
 for (const id of ['welcome','reason-1','reason-2','reason-3','reason-4','reason-5','reason-6','reason-7','offer','classics-sequence','europe-map']) {
   if (!html.includes(`id="${id}"`)) throw new Error(`Missing #${id}`);
 }
-const fullHtml = await readFile(resolve(root, 'src/full.html'), 'utf8');
+const fullHtml = await readFile(resolve(root, 'src/full/index.html'), 'utf8');
 for (const id of ['hero-classics-sequence', 'classics-sequence', 'europe-map', 'course-map', 'growth-chart', 'kids-chart']) {
   if (!fullHtml.includes(`id="${id}"`)) throw new Error(`Archived proposal is missing #${id}`);
 }
