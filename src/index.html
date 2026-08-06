@@ -265,6 +265,11 @@
           <aside id="course-poi-detail" class="course-poi-detail" aria-live="polite">
             <div class="course-poi-media"><img src="/assets/images/landmarks/poi-placeholder.svg" alt=""></div>
             <div class="course-poi-copy"><strong></strong><span></span></div>
+            <div class="course-poi-controls" aria-label="Choose a course point of interest">
+              <button type="button" class="course-poi-arrow" data-poi-previous aria-label="Previous point of interest">&#8592;</button>
+              <div class="course-poi-pages" role="group" aria-label="Course points of interest"></div>
+              <button type="button" class="course-poi-arrow" data-poi-next aria-label="Next point of interest">&#8594;</button>
+            </div>
           </aside>
           <div class="course-map-shell">
             <span class="course-map-kicker">2027 course</span>
@@ -274,7 +279,7 @@
       </div>
       <div class="shell elevation-board reveal">
         <div class="elevation-copy"><p class="kicker">Course profile</p><h3>Mostly flat.</h3><dl><div><dt>Lowest point</dt><dd>3.5 m</dd></div><div><dt>Highest point</dt><dd>17 m</dd></div></dl></div>
-        <div class="elevation-chart-wrap"><svg id="elevation-chart" viewBox="0 0 1100 390" role="img" aria-label="Smoothed elevation profile for the Rimi Riga Marathon course"></svg></div>
+        <div class="elevation-chart-wrap" tabindex="0" aria-label="Horizontally scroll to explore the full course profile"><span class="scroll-cue" aria-hidden="true">Swipe to explore &rarr;</span><svg id="elevation-chart" viewBox="0 0 1100 390" role="img" aria-label="Smoothed elevation profile for the Rimi Riga Marathon course"></svg></div>
       </div>
 
       <div class="in-short"><div class="shell"><span>In short</span><p>If you want fast times on both the elite and amateur levels, our course delivers. Keep an eye out for some big surprises in 2027!</p></div></div>

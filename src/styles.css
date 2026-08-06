@@ -732,3 +732,86 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .growth-trajectory-values strong{font-size:42px}
   .scope-circles{gap:16px}
 }
+
+/* Mobile polish and map/POI navigation pass */
+.tile-map{background:#262626}
+.tile-layer img{filter:grayscale(1) invert(1) brightness(.16) contrast(2)}
+.course-poi-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 24px;border-top:1px solid #263b47;background:#070b0e}
+.course-poi-arrow,.course-poi-pages button{display:grid;place-items:center;border:1px solid #3d535e;background:transparent;color:#dce4e7;cursor:pointer;transition:.2s ease}
+.course-poi-arrow{width:42px;height:42px;border-radius:50%;font-size:19px}
+.course-poi-pages{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
+.course-poi-pages button{width:25px;height:25px;border-radius:50%;font-size:10px}
+.course-poi-arrow:hover,.course-poi-arrow:focus-visible,.course-poi-pages button:hover,.course-poi-pages button:focus-visible,.course-poi-pages button.active{border-color:var(--green);background:var(--green);color:#06110c}
+.offer-amount strong{margin-top:22px}
+.scroll-cue{display:none}
+
+@media(max-width:800px){
+  :root{--shell:calc(100vw - 40px)}
+  body{font-size:15px;line-height:1.6;overflow-x:hidden}
+  .reason{padding-top:82px}
+  .reason-header{margin-bottom:38px;gap:15px}
+  .reason-header h2{font-size:clamp(34px,10vw,50px);line-height:1.01}
+  .reason-number{font-size:54px}
+  .prose .lead{font-size:24px}
+  .prose p{margin:0 0 18px}
+  .data-board,.wide-chart,.kids-board,.sustainability-board,.elevation-board,.medal-story,.stability-system,.stability-pillars{margin-top:44px}
+  .data-board-head,.chart-title{display:block;margin-bottom:26px}
+  .chart-title h3,.data-board-head h3{font-size:34px}
+  .chart-switcher{justify-content:flex-start;margin-top:20px}
+
+  /* Full-bleed boards avoid the card-inside-card effect on narrow screens. */
+  .data-board,.wide-chart,.kids-board,.sustainability-board,.elevation-board,.medal-story,.stability-system,.stability-pillars{width:100vw;margin-left:calc(50% - 50vw);padding:34px 20px;border-inline:0}
+  .scope,.pillar,.stability-pillars article{background:transparent}
+  .scope{border-width:0 0 1px;border-radius:0}
+
+  .wide-chart .chart-frame,.kids-board .chart-frame{overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;padding-bottom:12px}
+  .wide-chart svg,.kids-board svg{min-width:760px}
+  .wide-chart .chart-frame:before,.kids-board .chart-frame:before{content:"Swipe to explore  →";position:sticky;z-index:3;left:0;display:inline-block;margin-bottom:8px;padding:5px 9px;border-radius:999px;background:#202020;color:#bbb;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+  .chart-axis{font-size:14px}
+  .distance-row{padding:18px 0;grid-template-columns:92px minmax(72px,1fr) 64px}
+  .distance-track{height:18px}
+
+  .course-layout{gap:18px}
+  .course-poi-detail{order:2;min-height:0!important;height:auto!important}
+  .course-map-shell{order:1}
+  .course-poi-media{height:220px;min-height:220px}
+  .course-poi-copy{min-height:190px;padding:24px}
+  .course-poi-copy strong{font-size:36px}
+  .course-poi-copy span{font-size:14px;line-height:1.5}
+  .course-poi-controls{padding:14px 18px}
+  .course-map{height:480px!important;min-height:480px!important}
+  .poi-marker button{width:30px;height:30px}
+  .poi-label{display:none}
+
+  .elevation-board{display:block}
+  .elevation-chart-wrap{position:relative;margin-top:24px;overflow-x:auto!important;overscroll-behavior-inline:contain}
+  .elevation-chart-wrap .scroll-cue{display:block;position:sticky;z-index:3;left:0;width:max-content;margin-bottom:8px;padding:6px 10px;border-radius:999px;background:#281319;color:#f2b5c3;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+  .elevation-chart-wrap svg{min-width:760px!important}
+
+  .medal-story{background:transparent;border-block:1px solid #51344d}
+  .medal-grid{grid-template-columns:repeat(4,minmax(112px,1fr));overflow-x:auto;border:0;margin-inline:-20px;padding:0 20px;scroll-snap-type:x mandatory}
+  .medal-card{min-width:112px;padding:12px 8px;border:0!important;background:transparent;scroll-snap-align:start}
+  .medal-card>div,.medal-current>div{margin-top:8px;border:0;background:transparent}
+  .offer-amount{margin-top:42px}
+  .offer-amount strong{margin-top:24px}
+}
+
+@media(max-width:520px){
+  :root{--shell:calc(100vw - 32px)}
+  .hero{padding:94px 0 52px}
+  .hero-title{font-size:clamp(52px,16vw,72px)}
+  .reason{padding-top:72px}
+  .reason-header{grid-template-columns:1fr}
+  .reason-number{font-size:42px}
+  .reason-header h2{font-size:36px}
+  .course-board{padding:46px 0 54px}
+  .course-heading .lead{font-size:40px}
+  .course-map{height:400px!important;min-height:400px!important}
+  .course-poi-media{height:190px;min-height:190px}
+  .course-poi-copy{min-height:200px;padding:22px 20px}
+  .course-poi-pages{gap:5px}
+  .course-poi-pages button{width:23px;height:23px}
+  .course-poi-arrow{width:38px;height:38px;flex:0 0 auto}
+  .offer-amount strong{font-size:clamp(58px,19vw,82px)}
+  .closing-line{margin:90px 0 70px}
+}
