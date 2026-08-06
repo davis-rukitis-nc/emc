@@ -729,7 +729,16 @@ function createTileMap(container, coords, options = {}) {
   const ys = projected.map(point => point.y);
   const defaultCenter = { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 };
   const center = options.center ? mercator(options.center[1], options.center[0], zoom) : defaultCenter;
-  const visualScale = Number(options.visualScale || 1);
+  let visualScale = Number(options.visualScale || 1);
+  if (options.fitScale) {
+    const contentWidth = Math.max(...xs) - Math.min(...xs) || 1;
+    const contentHeight = Math.max(...ys) - Math.min(...ys) || 1;
+    const padding = Number(options.padding || 70);
+    visualScale = Math.min(
+      (width - padding * 2) / contentWidth,
+      (height - padding * 2) / contentHeight
+    );
+  }
   const origin = { x: center.x - width / (2 * visualScale), y: center.y - height / (2 * visualScale) };
 
   container.innerHTML = '';
@@ -831,7 +840,9 @@ function renderCourse(course, pois) {
 
   const draw = () => {
     const compact = matchMedia('(max-width: 800px)').matches;
-    const map = createTileMap(node, coords, { padding: compact ? 42 : 8, visualScale: compact ? .86 : 1.34, hideAttribution: true });
+    const map = createTileMap(node, coords, compact
+      ? { padding: 28, fitScale: true, hideAttribution: true }
+      : { padding: 8, visualScale: 1.34, hideAttribution: true });
     const points = coords.map(map.toLocal);
     const pathData = points.map((point, index) => `${index ? 'L' : 'M'} ${point[0].toFixed(1)} ${point[1].toFixed(1)}`).join(' ');
     map.overlay.append(svg('path', { d: pathData, class: 'route-shadow' }));
@@ -876,7 +887,9 @@ function renderEurope(cities) {
 
   const draw = () => {
     const compact = matchMedia('(max-width: 800px)').matches;
-    const map = createTileMap(node, coords, { zoom: compact ? 3 : 4, center: [10.5, 53], hideAttribution: true });
+    const map = createTileMap(node, coords, compact
+      ? { padding: 24, fitScale: true, hideAttribution: true }
+      : { zoom: 4, center: [10.5, 53], hideAttribution: true });
     const markerMap = new Map();
 
     cities.forEach(city => {

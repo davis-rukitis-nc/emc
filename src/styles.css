@@ -815,3 +815,29 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .offer-amount strong{font-size:clamp(58px,19vw,82px)}
   .closing-line{margin:90px 0 70px}
 }
+
+/* Mobile QA corrections (kept last so legacy responsive passes cannot override them). */
+@media(max-width:800px){
+  .hero-title{font-size:clamp(42px,13vw,62px);letter-spacing:-.06em;line-height:.86;max-width:100%}
+  .hero-title span{width:100%;white-space:nowrap}
+  .aigars-portrait,.mayor-portrait{margin-inline:auto;align-self:center;justify-self:center}
+  .reasons-intro{padding:82px 0 92px}
+  .reasons-intro-heading{margin-bottom:34px}
+  .reasons-intro-heading h2{font-size:clamp(48px,14vw,76px);line-height:.88;margin-top:12px}
+  .reason-index a{min-height:104px;padding:17px 18px}
+  .reason-index strong{font-size:18px}
+  .medal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;margin:28px 0 0;padding:0;border:1px solid #51344d}
+  .medal-card{min-width:0;padding:14px;border-right:1px solid #51344d!important;border-bottom:1px solid #51344d!important;background:#100a11;scroll-snap-align:none}
+  .medal-card:nth-child(2n){border-right:0!important}
+  .medal-card:nth-last-child(-n+2){border-bottom:0!important}
+  .medal-card>div,.medal-current>div{margin-top:10px;border:0!important;background:#080608}
+  .medal-card:not(.medal-current) .medal-art{border:0}
+  .stability-pillars{display:grid;gap:28px;border:0;background:transparent}
+  .stability-pillars article{min-height:0;padding:0;border:0!important;background:transparent}
+  .stability-pillars h3{font-size:22px;margin:0 0 8px}
+  .stability-system{border-inline:0}
+}
+@media(max-width:520px){
+  .hero-title{font-size:clamp(38px,12.5vw,52px)}
+  .reasons-intro-heading h2{font-size:clamp(44px,13.5vw,62px)}
+}
