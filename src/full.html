@@ -43,7 +43,7 @@
       <a href="#reason-7"><span>07</span><em>Anchor</em></a>
       <a href="#offer">Offer</a>
     </nav>
-    <a class="brand brand-rrm" href="https://rimirigamarathon.com/en/" target="_blank" rel="noreferrer" aria-label="Visit the Rimi Riga Marathon website (opens in a new tab)">
+    <a class="brand brand-rrm" href="#welcome" aria-label="Rimi Riga Marathon home">
       <img src="/assets/brand/rrm-logo-white.svg" alt="Rimi Riga Marathon">
     </a>
     <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="mobile-menu">Menu</button>
@@ -65,7 +65,7 @@
     <section class="hero section-dark" id="welcome" data-section="welcome">
       <div class="hero-inner shell">
         <div class="hero-copy">
-          <a class="hero-rrm-link" href="https://rimirigamarathon.com/en/" target="_blank" rel="noreferrer" aria-label="Visit the Rimi Riga Marathon website (opens in a new tab)"><img class="hero-rrm-mark" src="/assets/brand/rrm-logo-white.svg" alt="Rimi Riga Marathon"></a>
+          <img class="hero-rrm-mark" src="/assets/brand/rrm-logo-white.svg" alt="Rimi Riga Marathon">
           <p class="kicker reveal">Riga · 15–16 May 2027</p>
           <h1 class="hero-title reveal"><span>Completing</span><span>the circle.</span></h1>
           <p class="hero-intro reveal">Rimi Riga Marathon’s case for becoming the Baltic anchor of the European Marathon Classics.</p>
@@ -84,14 +84,13 @@
     </section>
 
     <section class="classics-calendar section-dark" aria-labelledby="calendar-title">
-      <div class="shell calendar-heading reveal">
-        <p class="kicker">The Classics calendar</p>
-        <h2 id="calendar-title">Riga lands one week after Copenhagen.</h2>
-        <p>The spring sequence gains a natural Baltic continuation before the calendar resumes in autumn.</p>
-      </div>
-      <div class="shell classics-calendar-board reveal">
-        <div id="classics-sequence" class="classics-sequence classics-sequence-map" aria-label="European Marathon Classics calendar sequence"></div>
-        <div id="europe-map" class="tile-map europe-map" role="img" aria-label="European Marathon Classics cities and Riga"></div>
+      <div class="shell classics-calendar-layout">
+        <div class="calendar-heading reveal">
+          <p class="kicker">The Classics calendar</p>
+          <h2 id="calendar-title">Riga lands one week after Copenhagen.</h2>
+          <p>The spring sequence gains a natural Baltic continuation before the calendar resumes in autumn.</p>
+        </div>
+        <div id="hero-classics-sequence" class="classics-sequence classics-sequence-hero reveal" aria-label="European Marathon Classics calendar sequence"></div>
       </div>
     </section>
 
@@ -177,11 +176,22 @@
         </div>
       </div>
       <div class="shell data-board reveal">
-        <div class="data-board-head"><div><p class="kicker">2026 registered participants</p><h3>One festival, every entry point.</h3></div></div>
-        <div class="distance-columns" aria-hidden="true"><span>Distance / event</span><span></span><span>Participants</span></div>
-        <div id="distance-chart" class="distance-chart" aria-label="2026 registered participants by distance and event"></div>
+        <div class="data-board-head"><div><p class="kicker">2026 finishers</p><h3>One festival, every entry point.</h3></div></div>
+        <div class="distance-columns" aria-hidden="true"><span>Distance</span><span></span><span>Finishers</span><span>Share</span></div>
+        <div id="distance-chart" class="distance-chart" aria-label="2026 finishers by distance"></div>
+        <div class="international-splits">
+          <div class="split-card" style="--split:#40B07A"><div class="donut" style="--value:58.7"><span>58.7%</span></div><div><strong>Marathon</strong><p>International finishers</p></div></div>
+          <div class="split-card" style="--split:#9F5198"><div class="donut" style="--value:35.6"><span>35.6%</span></div><div><strong>Half marathon</strong><p>International finishers</p></div></div>
+        </div>
       </div>
-            <div class="in-short"><div class="shell"><span>In short</span><p>As the leading race in the Baltics, we punch far above our weight, delivering a massive social, mental, and economic footprint. For 20 years, we’ve developed Riga not as a local event, but as one of Europe’s premier running destinations.</p></div></div>
+      <div class="shell wide-chart reveal">
+        <div class="chart-title chart-title-interactive">
+          <div><h3>Riga’s running community through the years.</h3></div>
+          <div id="growth-metrics" class="chart-switcher" role="group" aria-label="Growth chart metric"></div>
+        </div>
+        <div class="chart-frame"><svg id="growth-chart" viewBox="0 0 1200 460" role="img" aria-label="Rimi Riga Marathon participants from 1991 to 2026"></svg><div id="growth-tooltip" class="chart-tooltip" hidden></div></div>
+      </div>
+      <div class="in-short"><div class="shell"><span>In short</span><p>As the leading race in the Baltics, we punch far above our weight, delivering a massive social, mental, and economic footprint. For 20 years, we’ve developed Riga not as a local event, but as one of Europe’s premier running destinations.</p></div></div>
     </section>
 
     <section class="reason reason-world section-blue" id="reason-2" data-section="reason-2">
@@ -208,7 +218,25 @@
           </div>
         </div>
       </div>
-            <div class="in-short"><div class="shell"><span>In short</span><p>We are World Athletics-tested, operationally flawless, and fully equipped to execute complex events at the highest global tier.</p></div></div>
+      <div class="shell record-showcase reveal" aria-label="Road Mile world records set in Riga">
+        <article class="record-stage record-current">
+          <figure><img src="/assets/images/diribe-welteji-world-record.jpg" alt="Diribe Welteji crossing the finish line at the Freedom Monument in Riga"><figcaption>Diribe Welteji · Riga, 2023</figcaption></figure>
+          <div class="record-stage-content">
+            <p class="record-eyebrow">Women’s Road Mile</p>
+            <div class="digital-time" data-digital="4:20.98" aria-label="4 minutes 20 point 98 seconds"></div>
+            <div class="record-status">Current world record</div>
+          </div>
+        </article>
+        <article class="record-stage record-former">
+          <figure><img src="/assets/images/hobbs-kessler-world-record.jpg" alt="Hobbs Kessler crossing the finish line at the Freedom Monument in Riga"><figcaption>Hobbs Kessler · Riga, 2023</figcaption></figure>
+          <div class="record-stage-content">
+            <p class="record-eyebrow">Men’s Road Mile</p>
+            <div class="digital-time" data-digital="3:56.13" aria-label="3 minutes 56 point 13 seconds"></div>
+            <div class="record-status">Former world record</div>
+          </div>
+        </article>
+      </div>
+      <div class="in-short"><div class="shell"><span>In short</span><p>We are World Athletics-tested, operationally flawless, and fully equipped to execute complex events at the highest global tier.</p></div></div>
     </section>
 
     <section class="reason section-dark" id="reason-3" data-section="reason-3">
@@ -223,20 +251,33 @@
           <p>With targeted investment in elite fields, we are ready to deliver headline-grabbing record times and an endless sea of amateur personal bests. In 2026, our Half Marathon’s Competition Performance Score (9665) was surpassed by only four major events in all of Europe. <strong>Our women’s half-marathon record is currently #2 in the world, our men's course record was set by Sebastian Sawe (59:10), and our Road Mile course still holds the World Record set in 2023.</strong></p>
           <p>Now, to be completely transparent: our full marathon score for 2026 sits at 8865. Sure, it isn’t at the Major or European Marathon Classics level <em>yet</em> — but we are honest enough to admit it and ambitious enough to scale it alongside the Classics family.</p>
         </div>
-        <div class="performance-board reveal" aria-label="Half marathon and marathon performance scores and best times">
-          <article class="performance-card">
-            <p>Half Marathon performance score</p><strong class="performance-score">9665</strong>
-            <span class="performance-label">Half marathon best times</span>
-            <div class="performance-times"><div><strong>59:10</strong><span>Men’s half-marathon</span></div><div><strong>1:04:22</strong><span>Women’s half-marathon</span></div></div>
-          </article>
-          <article class="performance-card">
-            <p>Marathon performance score</p><strong class="performance-score">8865</strong>
-            <span class="performance-label">Marathon best times</span>
-            <div class="performance-times"><div><strong>2:08:51</strong><span>Men’s marathon</span></div><div><strong>2:26:18</strong><span>Women’s marathon</span></div></div>
-          </article>
+        <div class="speed-stats reveal">
+          <div><strong>9665</strong><span>Half Marathon performance score</span></div>
+          <div><strong>59:10</strong><span>Men’s half-marathon course record</span></div>
+          <div><strong>8865</strong><span>Full marathon performance score</span></div>
         </div>
       </div>
-            <div class="shell elevation-board reveal">
+      <div class="course-board reveal">
+        <div class="shell course-heading">
+          <h3 class="lead">42.195 km through Riga.</h3>
+        </div>
+        <div class="shell course-layout">
+          <aside id="course-poi-detail" class="course-poi-detail" aria-live="polite">
+            <div class="course-poi-media"><img src="/assets/images/landmarks/poi-placeholder.svg" alt=""></div>
+            <div class="course-poi-copy"><strong></strong><span></span></div>
+            <div class="course-poi-controls" aria-label="Choose a course point of interest">
+              <button type="button" class="course-poi-arrow" data-poi-previous aria-label="Previous point of interest">&#8592;</button>
+              <div class="course-poi-pages" role="group" aria-label="Course points of interest"></div>
+              <button type="button" class="course-poi-arrow" data-poi-next aria-label="Next point of interest">&#8594;</button>
+            </div>
+          </aside>
+          <div class="course-map-shell">
+            <span class="course-map-kicker">2027 course</span>
+            <div id="course-map" class="tile-map course-map show-landmarks" role="img" aria-label="Rimi Riga Marathon 2027 course and selected Riga landmarks and kilometre points"></div>
+          </div>
+        </div>
+      </div>
+      <div class="shell elevation-board reveal">
         <div class="elevation-copy"><p class="kicker">Course profile</p><h3>Mostly flat.</h3><dl><div><dt>Lowest point</dt><dd>3.5 m</dd></div><div><dt>Highest point</dt><dd>17 m</dd></div></dl></div>
         <div class="elevation-chart-wrap" tabindex="0" aria-label="Horizontally scroll to explore the full course profile"><span class="scroll-cue" aria-hidden="true">Swipe to explore &rarr;</span><svg id="elevation-chart" viewBox="0 0 1100 390" role="img" aria-label="Smoothed elevation profile for the Rimi Riga Marathon course"></svg></div>
       </div>
@@ -282,7 +323,8 @@
         </div>
         <div class="kids-number reveal"><img src="/assets/images/kids2.svg" alt="" aria-hidden="true"><strong data-count="9433">9,433</strong><span>participants · 2026</span></div>
       </div>
-            <div class="shell sustainability-board reveal">
+      <div class="shell kids-board reveal"><div class="chart-title"><p class="kicker">Kids’ Day growth</p><h3>A generation growing with the marathon.</h3></div><div class="chart-frame"><svg id="kids-chart" viewBox="0 0 1200 400" role="img" aria-label="Kids’ Day participants from 2016 to 2026"></svg></div></div>
+      <div class="shell sustainability-board reveal">
         <div class="sustainability-total"><p class="kicker">Carbon footprint</p><strong>≈ 342 t</strong><span>CO₂e</span></div>
         <div class="scope-circles" aria-label="Carbon footprint by scope"><div class="scope scope-small"><span>Scope 1</span><strong>1%</strong></div><div class="scope scope-small"><span>Scope 2</span><strong>1%</strong></div><div class="scope scope-large"><span>Scope 3</span><strong>98%</strong><small>Transport, accommodation, food, energy, materials, waste and freight.</small></div></div>
         <div class="pillars"><article><h3>Reduction</h3><p>Reduce production and consumption, digitise materials and use recyclable or recycled materials.</p></article><article><h3>Education and involvement</h3><p>Mobilise the runner community and partners around more sustainable choices.</p></article><article><h3>Compensation</h3><p>Invest in sustainable and emission-reducing projects in Riga and Latvia.</p></article></div>
@@ -349,6 +391,13 @@
           <div class="growth-trajectory-values"><div><span>Current field</span><strong>3,569</strong></div><div><span>Ambition</span><strong>10,000+</strong></div></div>
         </div>
       </div>
+      <div class="europe-board reveal">
+        <div class="shell calendar-head"><p class="kicker">A natural spring sequence</p><h3>Copenhagen → Riga, one week later.</h3></div>
+        <div class="shell europe-layout">
+          <div id="classics-sequence" class="classics-sequence classics-sequence-map" aria-label="European Marathon Classics calendar sequence"></div>
+          <div id="europe-map" class="tile-map europe-map" role="img" aria-label="European Marathon Classics cities and Riga"></div>
+        </div>
+      </div>
       <div class="in-short"><div class="shell"><span>In short</span><p>The European Marathon Classics circuit won't be complete without the Baltic's crown-jewel event. We’re happy to bring participants, high-production standards, and direct “skin in the game” to support the series' collective logistics and marketing.</p></div></div>
     </section>
 
@@ -366,14 +415,8 @@
         </div>
         <blockquote class="closing-line reveal">Let’s complete the circle together, shall we?</blockquote>
         <div class="team reveal">
-          <div class="team-intro"><p class="kicker">Prepared by Rimi Riga Marathon team</p><p>Although originally not from the elite sports world, they are experienced recreational runners, known for their storytelling and event production skills. In 2006, when the team started their journey with Rimi Riga Marathon, they pretty much had to turn a dreaded activity for many – running – into an appealing social movement, by engaging people, attracting sponsors, involving the City, and persuading thousands of international runners to come and enjoy running in Riga!</p><p>Decades later, running is the most popular mass sport in Latvia, while Riga has become the 2023 Road Running Capital of the World, as stated by Sebastian Coe, the president of World Athletics!</p></div>
+          <div><p class="kicker">Prepared by Rimi Riga Marathon team</p><ul><li><strong>Aigars Nords</strong><span>Founder &amp; CEO</span></li><li><strong>Inese Ķīkule</strong><span>Race Director</span></li><li><strong>Rebeka Ozolniece</strong><span>Head of Communications</span></li><li><strong>Valda Petrova</strong><span>Head of Events &amp; Sponsorships</span></li></ul></div>
           <figure class="team-photo"><img src="/assets/images/team-2026.jpg" alt="Rimi Riga Marathon team beneath the event finish arch"></figure>
-          <ul class="team-contacts">
-            <li><div><strong>Aigars Nords</strong><span>Founder &amp; CEO</span></div><div><a href="mailto:aigars.nords@necom.lv">aigars.nords@necom.lv</a><a href="tel:+37126540970">+371 26540970</a></div></li>
-            <li><div><strong>Inese Ķīkule</strong><span>Race Director</span></div><div><a href="mailto:inese.kikule@necom.lv">inese.kikule@necom.lv</a><a href="tel:+37129666110">+371 29666110</a></div></li>
-            <li><div><strong>Rebeka Ozolniece</strong><span>Head of Communications</span></div><div><a href="mailto:rebeka.ozolniece@necom.lv">rebeka.ozolniece@necom.lv</a><a href="tel:+37128656789">+371 28656789</a></div></li>
-            <li><div><strong>Valda Petrova</strong><span>Head of Events &amp; Sponsorships</span></div><div><a href="mailto:valda.petrova@necom.lv">valda.petrova@necom.lv</a><a href="tel:+37120326324">+371 20326324</a></div></li>
-          </ul>
         </div>
         <div class="end-marks reveal"><img src="/assets/brand/emc-primary-gold.svg" alt="European Marathon Classics"><span>×</span><img src="/assets/brand/rrm-logo-white.svg" alt="Rimi Riga Marathon"></div>
       </div>

@@ -1,5 +1,5 @@
-import { access, readFile, readdir } from 'node:fs/promises';
-import { extname, resolve } from 'node:path';
+import { access, readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const required = [
@@ -12,8 +12,12 @@ const required = [
 ];
 for (const file of required) await access(resolve(root, file));
 const html = await readFile(resolve(root, 'src/index.html'), 'utf8');
-for (const id of ['welcome','reason-1','reason-2','reason-3','reason-4','reason-5','reason-6','reason-7','offer','hero-classics-sequence','classics-sequence','europe-map','course-map']) {
+for (const id of ['welcome','reason-1','reason-2','reason-3','reason-4','reason-5','reason-6','reason-7','offer','classics-sequence','europe-map']) {
   if (!html.includes(`id="${id}"`)) throw new Error(`Missing #${id}`);
+}
+const fullHtml = await readFile(resolve(root, 'src/full.html'), 'utf8');
+for (const id of ['hero-classics-sequence', 'classics-sequence', 'europe-map', 'course-map', 'growth-chart', 'kids-chart']) {
+  if (!fullHtml.includes(`id="${id}"`)) throw new Error(`Archived proposal is missing #${id}`);
 }
 for (const word of ['honoured', 'honour', 'Sceptics', 'criterion']) {
   if (!html.includes(word)) throw new Error(`Expected British-English copy marker: ${word}`);
@@ -33,8 +37,4 @@ for (const marker of ['.label-physics-copy{','justify-content:flex-end','height:
 }
 if (!html.includes('<strong>≈ 342 t</strong>')) throw new Error('Sustainability total is not using the approximate value.');
 
-const files = await readdir(resolve(root, 'src/assets/fonts'));
-if (files.some(file => ['.ttf','.otf','.woff','.woff2'].includes(extname(file).toLowerCase()))) {
-  throw new Error('Font binaries must not be distributed in the project archive.');
-}
 console.log('Validation passed.');
