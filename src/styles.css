@@ -931,7 +931,7 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
 
 /* Full-width Classics calendar map */
 .classics-calendar{position:relative;padding:0;border:0;overflow:hidden}
-.classics-calendar-stage{position:relative;width:100%;height:clamp(760px,88vh,940px);min-height:760px;isolation:isolate}
+.classics-calendar-stage{position:relative;width:100%;height:clamp(840px,92vh,980px);min-height:840px;isolation:isolate}
 .classics-calendar-stage>.europe-map{position:absolute;inset:0;width:100%;height:100%;border:0;background:#111315}
 .classics-calendar-stage .europe-map .tile-layer img{filter:none}
 .classics-calendar-stage:before,.classics-calendar-stage:after{content:"";position:absolute;z-index:3;left:0;right:0;height:150px;pointer-events:none}
@@ -941,7 +941,7 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
 .classics-calendar-overlay:after{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:calc(50% - 50vw);width:min(760px,66vw);background:linear-gradient(90deg,#050505 0%,#050505ed 47%,#0505059c 72%,transparent 100%);pointer-events:none}
 .classics-calendar-panel{width:min(100%,440px);padding:72px 0 60px;pointer-events:auto}
 .classics-calendar .calendar-heading{max-width:none;margin:0 0 34px}
-.classics-calendar .calendar-heading h2{max-width:430px;font-size:clamp(44px,4.8vw,72px);line-height:.94}
+.classics-calendar .calendar-heading h2{max-width:520px;font-size:clamp(38px,4vw,56px);line-height:.98}
 .classics-calendar .calendar-heading>p:last-child{max-width:390px;margin-top:20px;color:#bcb8b0;font-size:16px;line-height:1.55}
 .classics-calendar .classics-sequence-map{display:grid;gap:5px;width:100%;max-width:410px;margin:0;padding:0}
 .classics-calendar .classics-sequence-map .classics-race,.classics-calendar .classics-sequence-map .classics-race.riga{box-sizing:border-box;width:100%;min-height:38px;padding:7px 13px;transform:none!important;border-color:#ffffff24;background:#090909d6;backdrop-filter:blur(8px)}
@@ -953,14 +953,14 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .classics-calendar-overlay{align-items:flex-start}
   .classics-calendar-overlay:after{width:100vw;background:linear-gradient(90deg,#050505f2 0%,#050505cf 62%,#05050566 100%)}
   .classics-calendar-panel{width:min(100%,440px);padding:100px 0 90px}
-  .classics-calendar .calendar-heading h2{font-size:clamp(42px,11vw,62px)}
+  .classics-calendar .calendar-heading h2{font-size:clamp(36px,9vw,48px)}
   .classics-calendar .classics-sequence{margin-top:0}
 }
 @media(max-width:520px){
   .classics-calendar-stage,.classics-calendar-stage>.europe-map{min-height:850px}
   .classics-calendar-panel{padding:82px 0 74px}
   .classics-calendar .calendar-heading{margin-bottom:28px}
-  .classics-calendar .calendar-heading h2{font-size:40px}
+  .classics-calendar .calendar-heading h2{font-size:38px}
   .classics-calendar .calendar-heading>p:last-child{font-size:15px}
   .classics-calendar .classics-sequence-map .classics-race,.classics-calendar .classics-sequence-map .classics-race.riga{min-height:36px;padding:6px 11px}
 }
@@ -968,11 +968,11 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
 .classics-calendar .classics-sequence-map .classics-race.riga{color:#07120d}
 
 /* Restore the original coloured Classics sequence */
-.classics-calendar-panel{width:min(100%,500px)}
-.classics-calendar .calendar-heading{max-width:440px}
-.classics-calendar .classics-sequence-map{align-items:center;width:100%;max-width:490px;overflow:visible}
-.classics-calendar .classics-sequence-map .classics-race{width:min(calc(100% - 48px),440px);min-height:48px;padding:9px 18px;background:var(--city);color:var(--ink);transform:translateX(var(--shift))!important;border:0;box-shadow:0 12px 30px #0006;backdrop-filter:none}
-.classics-calendar .classics-sequence-map .classics-race.riga{width:min(calc(100% - 24px),476px);min-height:48px;background:var(--city);color:var(--ink);transform:translateX(var(--shift))!important;border:0;box-shadow:0 0 0 2px #fff,0 15px 38px #0008}
+.classics-calendar-panel{width:min(100%,570px);padding-block:58px}
+.classics-calendar .calendar-heading{max-width:520px}
+.classics-calendar .classics-sequence-map{align-items:center;width:100%;max-width:560px;padding:18px 0;overflow:visible}
+.classics-calendar .classics-sequence-map .classics-race{width:min(calc(100% - 60px),500px);min-height:48px;margin-top:0!important;padding:9px 18px;background:var(--city);color:var(--ink);transform:translateX(var(--shift))!important;border:0;box-shadow:0 12px 30px #0006;backdrop-filter:none}
+.classics-calendar .classics-sequence-map .classics-race.riga{width:min(calc(100% - 32px),536px);min-height:48px;background:var(--city);color:var(--ink);transform:translateX(var(--shift))!important;border:0;box-shadow:0 0 0 2px #fff,0 15px 38px #0008}
 .classics-calendar .classics-sequence-map .classics-race strong,.classics-calendar .classics-sequence-map .classics-race span{font-size:20px}
 .classics-calendar .classics-sequence-map .classics-race:hover,.classics-calendar .classics-sequence-map .classics-race.active{transform:translateX(var(--shift)) scale(1.035)!important}
 @media(max-width:800px){
@@ -981,15 +981,15 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .classics-calendar-stage>.europe-map{display:none}
   .classics-calendar-stage:before,.classics-calendar-stage:after,.classics-calendar-overlay:after{display:none}
   .classics-calendar-overlay{height:auto}
-  .classics-calendar-panel{width:100%;padding:86px 0 94px}
+  .classics-calendar-panel{width:100%;padding:78px 0 86px}
   .classics-calendar .calendar-heading{max-width:520px}
-  .classics-calendar .classics-sequence-map{max-width:520px;margin-top:34px}
+  .classics-calendar .classics-sequence-map{max-width:none;margin-top:26px;padding:18px 0}
   .classics-calendar .classics-sequence-map .classics-race,.classics-calendar .classics-sequence-map .classics-race.riga{width:100%;transform:none!important}
   .classics-calendar .classics-sequence-map .classics-race:hover,.classics-calendar .classics-sequence-map .classics-race.active{transform:scale(1.015)!important}
 }
 @media(max-width:520px){
   .classics-calendar-stage{min-height:0}
-  .classics-calendar-panel{padding:72px 0 80px}
+  .classics-calendar-panel{padding:68px 0 76px}
   .classics-calendar .classics-sequence-map{margin-top:28px}
   .classics-calendar .classics-sequence-map .classics-race,.classics-calendar .classics-sequence-map .classics-race.riga{min-height:44px;padding:8px 14px}
   .classics-calendar .classics-sequence-map .classics-race strong,.classics-calendar .classics-sequence-map .classics-race span{font-size:17px}
