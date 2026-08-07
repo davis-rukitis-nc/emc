@@ -67,6 +67,9 @@ export default {
     if (!(await isAuthorised(request, env))) {
       return new Response(gate(), { status: 401, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
     }
+    if (url.pathname === '/full') {
+      return new Response(null, { status: 308, headers: headers({ 'Location': '/full/' }) });
+    }
     const response = await env.ASSETS.fetch(request);
     const out = new Response(response.body, response);
     for (const [key, value] of Object.entries(headers())) out.headers.set(key, value);

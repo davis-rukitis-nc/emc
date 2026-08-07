@@ -187,8 +187,12 @@ function renderDistances(rows) {
   const node = qs('#distance-chart');
   if (!node) return;
   const distances = rows.filter(row => !row.distance.includes('Relay'));
-  const maximum = Math.max(...distances.map(row => row.finishers));
-  const colours = [
+  const valueFor = row => row.participants ?? row.finishers;
+  const maximum = Math.max(...distances.map(valueFor));
+  const colours = rows.some(row => row.participants != null) ? [
+    '#C14692', DISTANCE_COLOURS.mile, DISTANCE_COLOURS.short,
+    DISTANCE_COLOURS.tenKm, DISTANCE_COLOURS.half, DISTANCE_COLOURS.marathon
+  ] : [
     DISTANCE_COLOURS.mile,
     DISTANCE_COLOURS.short,
     DISTANCE_COLOURS.tenKm,
@@ -199,9 +203,9 @@ function renderDistances(rows) {
   node.innerHTML = distances.map((distance, index) => `
     <div class="distance-row" style="--bar:${colours[index]}">
       <span class="distance-label">${distance.distance}</span>
-      <span class="distance-track"><i class="distance-fill" style="--width:${(distance.finishers / maximum * 100).toFixed(1)}%"></i></span>
-      <span class="distance-value">${format(distance.finishers)}</span>
-      <span class="distance-share">${distance.share}%</span>
+      <span class="distance-track"><i class="distance-fill" style="--width:${(valueFor(distance) / maximum * 100).toFixed(1)}%"></i></span>
+      <span class="distance-value">${format(valueFor(distance))}</span>
+      ${distance.share == null ? '' : `<span class="distance-share">${distance.share}%</span>`}
     </div>`).join('');
 }
 
@@ -887,9 +891,14 @@ function renderEurope(cities) {
 
   const draw = () => {
     const compact = matchMedia('(max-width: 800px)').matches;
+    const isCalendarStage = Boolean(node.closest('.classics-calendar-stage'));
     const map = createTileMap(node, coords, compact
-      ? { padding: 24, fitScale: true, hideAttribution: true }
-      : { zoom: 4, center: [10.5, 53], hideAttribution: true });
+      ? (isCalendarStage
+          ? { zoom: 4, center: [3, 53], visualScale: 1.08, hideAttribution: true }
+          : { padding: 24, fitScale: true, hideAttribution: true })
+      : (isCalendarStage
+          ? { zoom: 4, center: [3, 52.5], visualScale: 1.16, hideAttribution: true }
+          : { zoom: 4, center: [10.5, 53], hideAttribution: true }));
     const markerMap = new Map();
 
     cities.forEach(city => {
@@ -1011,7 +1020,7 @@ function initStabilityGallery() {
 async function initData() {
   try {
     const [distances, reach, cities, course, pois, elevation] = await Promise.all([
-      load('distances.json'),
+      load(['/full', '/full/', '/full/index.html'].includes(location.pathname) ? 'distances-archive.json' : 'distances.json'),
       load('reach.json'),
       load('cities.json'),
       load('course.geojson'),
