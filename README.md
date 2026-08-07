@@ -4,7 +4,7 @@ Production-ready, password-protected one-page proposal for:
 
 **https://emc.rimirigamarathon.com**
 
-The project is designed for **GitHub → Cloudflare Workers Builds**. It combines a static site with a Cloudflare Worker that protects every page and asset behind a signed session cookie.
+The project is designed for **GitHub → Cloudflare Pages**. It combines static assets with a Pages advanced-mode Worker that protects every page and asset behind a signed session cookie.
 
 ## Project status
 
@@ -96,15 +96,15 @@ Before committing, check that neither `.dev.vars` nor any unintended secret file
 git status
 ```
 
-## Cloudflare Workers Builds setup
+## Cloudflare Pages setup
 
-Use **Workers**, not a Pages project.
+Use a **Pages** project when `rimirigamarathon.com` remains on external DNS. The Pages build installs the existing password-protection Worker as `dist/_worker.js`, so the proposal and all of its assets remain gated.
 
 1. Open Cloudflare → **Workers & Pages**.
 2. Select **Create application**.
 3. Choose **Import a repository**.
 4. Connect GitHub and select the private repository.
-5. Set the Worker/project name to exactly:
+5. Set the Pages project name to:
 
 ```text
 emc-riga-proposal
@@ -115,19 +115,19 @@ emc-riga-proposal
 ```text
 Production branch: main
 Root directory: /
-Build command: npm run build
-Deploy command: npx wrangler@latest deploy
+Framework preset: None
+Build command: npm run pages:build
+Build output directory: dist
 ```
 
-7. Save and deploy.
-
-The Worker name must match the `name` in `wrangler.jsonc`.
+7. Leave a Pages deploy-command field blank when the Git integration manages deployment.
+8. Save and deploy.
 
 ## Runtime secrets
 
-After the Worker exists, open:
+After the Pages project exists, open:
 
-**Worker → Settings → Variables & Secrets**
+**Pages project → Settings → Variables & Secrets**
 
 Add these as encrypted **runtime secrets**, not build variables:
 
@@ -144,19 +144,19 @@ openssl rand -base64 48
 
 Redeploy or retry the latest deployment after adding the secrets.
 
-## Custom domain
+## Custom domain with external DNS
 
-`wrangler.jsonc` already defines this Cloudflare Custom Domain:
+In **Pages project → Custom domains**, add:
 
 ```text
 emc.rimirigamarathon.com
 ```
 
-Cloudflare should create and manage the required DNS and certificate when deploying, provided `rimirigamarathon.com` is in the same Cloudflare account.
+Add the CNAME value shown by Pages to the externally managed DNS zone (for example, at GoDaddy). Add the custom domain in Pages before creating the CNAME. Cloudflare Pages will validate the record and provision the certificate; the whole `rimirigamarathon.com` zone does not need to move to Cloudflare.
 
 ## Preview branches
 
-In the Worker’s **Settings → Builds → Branch control**, enable builds for non-production branches when review links are useful.
+In the Pages project’s branch settings, enable preview builds when review links are useful.
 
 Recommended workflow:
 
@@ -171,8 +171,10 @@ feature/*  → Cloudflare preview versions
 src/index.html             page structure and content
 src/styles.css             complete visual system
 src/app.js                 charts, maps, Matter.js and interactions
-worker/index.js            password protection and security headers
-wrangler.jsonc             Cloudflare Worker/assets/custom-domain config
+worker/index.js            standalone Worker password protection
+worker/pages.js            Pages password protection and routing
+scripts/build-pages.mjs    installs the Worker in the Pages output
+wrangler.worker.jsonc      legacy standalone Worker development config
 src/assets/data/           course, cities and chart data
 src/assets/images/         production imagery
 src/assets/brand/          logo and identity SVGs
