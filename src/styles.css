@@ -878,6 +878,7 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .classics-calendar-board .europe-map{height:520px}
   .distance-columns,.distance-row{grid-template-columns:130px minmax(70px,1fr) 74px}
   .performance-board{margin-top:36px}
+  .team{grid-template-columns:minmax(0,1fr)}
   .team-contacts{grid-template-columns:1fr}
   .team-contacts li{min-height:0}
   .team-contacts li>div:last-child{margin-top:22px}
@@ -887,6 +888,8 @@ button,input,.desktop-nav,.mobile-menu{font-family:var(--font-body)}
   .distance-row{grid-template-columns:118px minmax(55px,1fr) 66px}
   .performance-card{padding:22px}
   .performance-times{gap:12px}
+  .team-contacts li{padding:22px}
+  .team-contacts a{overflow-wrap:anywhere}
 }
 
 /* Footer and restored dark map */
