@@ -10,8 +10,8 @@
     "pages:dev": "npm run pages:build && npx wrangler@latest pages dev dist",
     "preview": "node scripts/dev-server.mjs --dist",
     "validate": "node scripts/validate.mjs",
-    "cf:dev": "npm run build && npx wrangler@latest dev --config wrangler.worker.jsonc",
-    "cf:deploy": "npm run build && npx wrangler@latest deploy --config wrangler.worker.jsonc",
-    "deploy": "npm run build && npx wrangler@latest deploy --config wrangler.worker.jsonc"
+    "cf:dev": "npm run build && npx wrangler@latest dev",
+    "cf:deploy": "npm run build && npx wrangler@latest deploy",
+    "deploy": "npm run build && npx wrangler@latest deploy"
   }
 }

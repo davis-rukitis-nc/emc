@@ -174,7 +174,7 @@ src/app.js                 charts, maps, Matter.js and interactions
 worker/index.js            standalone Worker password protection
 worker/pages.js            Pages password protection and routing
 scripts/build-pages.mjs    installs the Worker in the Pages output
-wrangler.worker.jsonc      legacy standalone Worker development config
+wrangler.jsonc             legacy standalone Worker development config
 src/assets/data/           course, cities and chart data
 src/assets/images/         production imagery
 src/assets/brand/          logo and identity SVGs
