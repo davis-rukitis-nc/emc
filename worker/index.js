@@ -67,7 +67,10 @@ export default {
     if (!(await isAuthorised(request, env))) {
       return new Response(gate(), { status: 401, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
     }
-    const response = await env.ASSETS.fetch(request);
+    const assetRequest = url.pathname === '/full' || url.pathname === '/full/'
+      ? new Request(new URL('/full/index.html', url), request)
+      : request;
+    const response = await env.ASSETS.fetch(assetRequest);
     const out = new Response(response.body, response);
     for (const [key, value] of Object.entries(headers())) out.headers.set(key, value);
     if ((out.headers.get('Content-Type') || '').includes('text/html')) out.headers.set('Cache-Control', 'no-store');

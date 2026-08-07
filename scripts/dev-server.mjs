@@ -59,6 +59,7 @@ const server=http.createServer(async(req,res)=>{
   if(url.pathname==='/__lock'){res.writeHead(303,{'set-cookie':'emc_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0','location':'/'});return res.end()}
   if(!validCookie(req)){res.writeHead(401,{'content-type':'text/html; charset=utf-8'});return res.end(gate())}
   let pathname=decodeURIComponent(url.pathname); if(pathname==='/') pathname='/index.html';
+  if(pathname==='/full' || pathname==='/full/') pathname='/full/index.html';
   const safe=normalize(pathname).replace(/^([.][.][/\\])+/, '');
   const file=join(base,safe);
   if(!file.startsWith(base)){res.writeHead(403);return res.end('Forbidden')}
