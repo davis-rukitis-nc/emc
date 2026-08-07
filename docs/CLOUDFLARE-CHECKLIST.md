@@ -8,13 +8,14 @@
 - [ ] `.dev.vars` is not tracked
 - [ ] `main` contains the approved production build
 
-## Cloudflare Worker
+## Cloudflare Pages
 
-- [ ] Worker name is `emc-riga-proposal`
-- [ ] Repository connected through Workers Builds
+- [ ] Pages project name is `emc-riga-proposal`
+- [ ] Repository connected through Pages
 - [ ] Root directory is `/`
-- [ ] Build command is `npm run build`
-- [ ] Deploy command is `npx wrangler@latest deploy`
+- [ ] Framework preset is `None`
+- [ ] Build command is `npm run pages:build`
+- [ ] Build output directory is `dist`
 - [ ] Production branch is `main`
 
 ## Runtime secrets
@@ -26,7 +27,8 @@
 
 ## Domain
 
-- [ ] `rimirigamarathon.com` is in the same Cloudflare account
+- [ ] `emc.rimirigamarathon.com` is added in Pages Custom domains
+- [ ] External DNS has the CNAME value supplied by Pages
 - [ ] `emc.rimirigamarathon.com` custom domain is active
 - [ ] TLS certificate is active
 
