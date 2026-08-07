@@ -171,7 +171,8 @@ feature/*  → Cloudflare preview versions
 src/index.html             page structure and content
 src/styles.css             complete visual system
 src/app.js                 charts, maps, Matter.js and interactions
-worker/index.js            password protection and security headers
+worker/index.js            standalone Worker password protection
+worker/pages.js            Pages password protection and routing
 scripts/build-pages.mjs    installs the Worker in the Pages output
 wrangler.jsonc             legacy standalone Worker development config
 src/assets/data/           course, cities and chart data

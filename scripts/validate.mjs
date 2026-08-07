@@ -9,7 +9,7 @@ const required = [
   'src/assets/images/diribe-welteji-world-record.jpg',
   'src/assets/images/hobbs-kessler-world-record.jpg',
   'src/assets/images/team-2026.jpg',
-  'worker/index.js', 'wrangler.jsonc'
+  'worker/index.js', 'worker/pages.js', 'wrangler.jsonc'
 ];
 for (const file of required) await access(resolve(root, file));
 const html = await readFile(resolve(root, 'src/index.html'), 'utf8');
