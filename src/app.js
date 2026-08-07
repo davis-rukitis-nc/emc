@@ -891,9 +891,14 @@ function renderEurope(cities) {
 
   const draw = () => {
     const compact = matchMedia('(max-width: 800px)').matches;
+    const isCalendarStage = Boolean(node.closest('.classics-calendar-stage'));
     const map = createTileMap(node, coords, compact
-      ? { padding: 24, fitScale: true, hideAttribution: true }
-      : { zoom: 4, center: [10.5, 53], hideAttribution: true });
+      ? (isCalendarStage
+          ? { zoom: 4, center: [3, 53], visualScale: 1.08, hideAttribution: true }
+          : { padding: 24, fitScale: true, hideAttribution: true })
+      : (isCalendarStage
+          ? { zoom: 4, center: [3, 52.5], visualScale: 1.16, hideAttribution: true }
+          : { zoom: 4, center: [10.5, 53], hideAttribution: true }));
     const markerMap = new Map();
 
     cities.forEach(city => {
