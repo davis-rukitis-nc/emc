@@ -134,7 +134,12 @@ Add these as encrypted **runtime secrets**, not build variables:
 ```text
 SITE_PASSWORD = 9THCLASSIC
 SESSION_SECRET = a long random value
+CARTO_BASEMAP_KEY = the project CARTO Basemaps API key
 ```
+
+Set the secrets for both **Production** and **Preview** if deployment-specific
+`*.pages.dev` preview links will be reviewed. Secret changes only apply to a new
+deployment, so retry or redeploy after adding or changing them.
 
 Generate the session secret on macOS with:
 
@@ -210,6 +215,7 @@ npm run build
 npx wrangler@latest deploy
 npx wrangler@latest secret put SITE_PASSWORD
 npx wrangler@latest secret put SESSION_SECRET
+npx wrangler@latest secret put CARTO_BASEMAP_KEY
 ```
 
 Enter `9THCLASSIC` for `SITE_PASSWORD` and a generated random value for `SESSION_SECRET`.

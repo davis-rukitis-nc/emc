@@ -17,6 +17,7 @@ try {
 } catch {}
 const PASSWORD = process.env.SITE_PASSWORD || vars.SITE_PASSWORD || '9THCLASSIC';
 const SECRET = process.env.SESSION_SECRET || vars.SESSION_SECRET || 'local-only-secret';
+const CARTO_BASEMAP_KEY = process.env.CARTO_BASEMAP_KEY || vars.CARTO_BASEMAP_KEY || '';
 const PORT = Number(process.env.PORT || 4173);
 
 const mime = {
@@ -58,6 +59,18 @@ const server=http.createServer(async(req,res)=>{
   }
   if(url.pathname==='/__lock'){res.writeHead(303,{'set-cookie':'emc_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0','location':'/'});return res.end()}
   if(!validCookie(req)){res.writeHead(401,{'content-type':'text/html; charset=utf-8'});return res.end(gate())}
+  const tile=url.pathname.match(/^\/__carto\/dark_nolabels\/(\d+)\/(\d+)\/(\d+)\.png$/);
+  if(tile){
+    if(!CARTO_BASEMAP_KEY){res.writeHead(503,{'content-type':'text/plain; charset=utf-8'});return res.end('Basemap is not configured.')}
+    const [,zoom,x,y]=tile;
+    const tileUrl=new URL(`https://basemaps.cartocdn.com/rastertiles/dark_nolabels/${zoom}/${x}/${y}.png`);
+    tileUrl.searchParams.set('key',CARTO_BASEMAP_KEY);
+    try{
+      const upstream=await fetch(tileUrl);
+      res.writeHead(upstream.status,{'content-type':upstream.headers.get('content-type')||'image/png','cache-control':'public, max-age=86400'});
+      return res.end(Buffer.from(await upstream.arrayBuffer()));
+    }catch{res.writeHead(502,{'content-type':'text/plain; charset=utf-8'});return res.end('Basemap is unavailable.')}
+  }
   let pathname=decodeURIComponent(url.pathname); if(pathname==='/') pathname='/index.html';
   if(pathname==='/full' || pathname==='/full/') pathname='/full/index.html';
   const safe=normalize(pathname).replace(/^([.][.][/\\])+/, '');

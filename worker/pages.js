@@ -10,6 +10,7 @@ async function sign(payload, secret) {
   return toBase64Url(await crypto.subtle.sign('HMAC', key, bytes(payload)));
 }
 function constantTimeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
   if (a.length !== b.length) return false;
   let diff = 0;
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
@@ -42,10 +43,26 @@ function gate(message = '') {
   </style><main class="gate"><svg class="rings" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" stroke="#E2181A"/><circle cx="50" cy="50" r="42" stroke="#3F4997"/><circle cx="50" cy="50" r="38" stroke="#3DADE3"/><circle cx="50" cy="50" r="34" stroke="#C14692"/><circle cx="50" cy="50" r="30" stroke="#40B07A"/><circle cx="50" cy="50" r="26" stroke="#F7B601"/><circle cx="50" cy="50" r="22" stroke="#9F5198"/><circle cx="50" cy="50" r="18" stroke="#ED752D"/><circle cx="50" cy="50" r="14" stroke="#D0CFD0"/><circle cx="50" cy="50" r="10" stroke="#00609C"/></svg><div class="eyebrow">European Marathon Classics × Rimi Riga Marathon</div><h1 class="title">Complete<br>the circle</h1><p class="sub">Enter the access code to continue.</p><form method="post" action="/__unlock"><input name="password" type="password" autocomplete="current-password" placeholder="Access phrase" aria-label="Access phrase" autofocus><button>Enter</button></form><div class="error">${message}</div><div class="meta">Riga · 2027</div></main></html>`;
 }
 
+async function cartoTile(url, env) {
+  if (!env.CARTO_BASEMAP_KEY) return new Response('Basemap is not configured.', { status: 503 });
+  const match = url.pathname.match(/^\/__carto\/dark_nolabels\/(\d+)\/(\d+)\/(\d+)\.png$/);
+  if (!match) return new Response('Not found.', { status: 404 });
+  const [, zoom, x, y] = match;
+  const tileUrl = new URL(`https://basemaps.cartocdn.com/rastertiles/dark_nolabels/${zoom}/${x}/${y}.png`);
+  tileUrl.searchParams.set('key', env.CARTO_BASEMAP_KEY);
+  const response = await fetch(tileUrl, { cf: { cacheEverything: true, cacheTtl: 86400 } });
+  const out = new Response(response.body, response);
+  out.headers.set('Cache-Control', 'public, max-age=86400');
+  return out;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/__unlock' && request.method === 'POST') {
+      if (!env.SITE_PASSWORD || !env.SESSION_SECRET) {
+        return new Response(gate('Proposal access is temporarily unavailable.'), { status: 503, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
+      }
       const form = await request.formData();
       const supplied = String(form.get('password') || '');
       if (!constantTimeEqual(supplied, env.SITE_PASSWORD)) {
@@ -67,6 +84,7 @@ export default {
     if (!(await isAuthorised(request, env))) {
       return new Response(gate(), { status: 401, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
     }
+    if (url.pathname.startsWith('/__carto/')) return cartoTile(url, env);
     if (url.pathname === '/full') {
       return new Response(null, { status: 308, headers: headers({ 'Location': '/full/' }) });
     }
