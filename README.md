@@ -137,6 +137,10 @@ SESSION_SECRET = a long random value
 CARTO_BASEMAP_KEY = the project CARTO Basemaps API key
 ```
 
+Set the secrets for both **Production** and **Preview** if deployment-specific
+`*.pages.dev` preview links will be reviewed. Secret changes only apply to a new
+deployment, so retry or redeploy after adding or changing them.
+
 Generate the session secret on macOS with:
 
 ```bash

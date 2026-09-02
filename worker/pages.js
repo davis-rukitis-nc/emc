@@ -10,6 +10,7 @@ async function sign(payload, secret) {
   return toBase64Url(await crypto.subtle.sign('HMAC', key, bytes(payload)));
 }
 function constantTimeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
   if (a.length !== b.length) return false;
   let diff = 0;
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
@@ -59,6 +60,9 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/__unlock' && request.method === 'POST') {
+      if (!env.SITE_PASSWORD || !env.SESSION_SECRET) {
+        return new Response(gate('Proposal access is temporarily unavailable.'), { status: 503, headers: headers({ 'Content-Type': 'text/html; charset=utf-8' }) });
+      }
       const form = await request.formData();
       const supplied = String(form.get('password') || '');
       if (!constantTimeEqual(supplied, env.SITE_PASSWORD)) {
